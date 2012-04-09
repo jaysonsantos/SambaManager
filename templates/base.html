@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br">
+    <head>
+        <title>Samba Manager - {% block 'title' %}{% endblock %}</title>
+    </head>
+    <body>
+        <div style="padding: 5px;">
+            <a href="/manager/list-users/">Usuários</a>
+            <a href="/manager/list-groups/">Grupos</a>
+            <a href="/manager/list-shares/">Compartilhamentos</a>
+        </div>
+        {% block 'content' %}
+        {% endblock %}
+    </body>
+</html>

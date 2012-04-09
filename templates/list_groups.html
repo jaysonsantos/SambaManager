@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+{% if groups.count  %}
+<table>
+    <thead>
+        <tr>
+            <th>Grupo</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+    {% for group in groups %}
+    <tbody>
+        <tr>
+            <td>{{ group }}</td>
+            <td>
+            <a href="/manager/delete-group/{{ group.pk }}">X</a>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+<br />
+{% endif %}
+<a href="/manager/add-group/">Adicionar grupo</a>
+{% endblock %}

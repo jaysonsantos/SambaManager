@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+<form method="post" action="/manager/add-share/">{% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td colspan="2"><input type="submit" value="Salvar"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

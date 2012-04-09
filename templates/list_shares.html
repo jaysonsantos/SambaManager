@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+{% if shares.count  %}
+<table>
+    <thead>
+        <tr>
+            <th>Compartilhamento</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+    {% for share in shares %}
+    <tbody>
+        <tr>
+            <td>
+            <a href="/manager/edit-share/{{ share.pk }}">{{ share }}</a></td>
+            <td>
+            <a href="/manager/delete-share/{{ share.pk }}">X</a>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+<br />
+{% endif %}
+<a href="/manager/add-share/">Adicionar compartilhamento</a>
+{% endblock %}

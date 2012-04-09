@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+{% if users.count  %}
+<table>
+    <thead>
+        <tr>
+            <th>Usuário</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+    {% for user in users %}
+    <tbody>
+        <tr>
+            <td>
+            <a href="/manager/edit-user/{{ user.pk }}">{{ user }}</a></td>
+            <td>
+            <a href="/manager/delete-user/{{ user.pk }}">X</a>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+<br />
+{% endif %}
+<a href="/manager/add-user/">Adicionar usuário</a>
+{% endblock %}

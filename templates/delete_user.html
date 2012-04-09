@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block 'content' %}
+<form action="/manager/delete-user/{{ user.pk }}/" method="post">{% csrf_token %}
+    <h2>Deseja mesmo excluir o usuário {{ user.name }}?</h2>
+    <label>Não <input type="radio" name="delete" value="0" checked="checked" /></label>
+    <label>Sim <input type="radio" name="delete" value="1" /></label>
+    <br />
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}
