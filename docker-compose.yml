@@ -1,0 +1,6 @@
+web:
+  build: .
+  command: python src/SambaManager/manage.py runserver
+  ports:
+    - "8000:8000"
+    
