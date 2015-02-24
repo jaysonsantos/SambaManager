@@ -1,6 +1,16 @@
 web:
   build: .
-  command: python src/SambaManager/manage.py runserver
+  volumes:
+    - .:/code
+  command: python src/SambaManager/manage.py runserver 0.0.0.0:8000
   ports:
     - "8000:8000"
-    
+  environment:
+    - PYTHONUNBUFFERED=1
+  links:
+    - db
+
+db:
+  image: jamesbrink/postgresql
+  environment:
+    - SCHEMA=samba_manager

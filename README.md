@@ -15,3 +15,13 @@ SAMBA_CONF = '/etc/samba/smb.conf'
 USER_HOME_DIR = '/storage/arquivos/home/{0}'
 SAMBA_SHARES_DIR = '/storage/arquivos/{0}'
 ```
+
+## Running inside docker
+If you want to deploy inside docker to develop or to do tests in a container.
+
+```bash
+docker-compose up
+docker-compose run web ./src/SambaManager/manage.py syncdb
+```
+
+Access `http://localhost:8000`.
