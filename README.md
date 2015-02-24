@@ -24,4 +24,4 @@ docker-compose up
 docker-compose run web ./src/SambaManager/manage.py syncdb
 ```
 
-Access `http://localhost:8000`.
+Access `http://localhost:8000` and login with `default_user` `password`.

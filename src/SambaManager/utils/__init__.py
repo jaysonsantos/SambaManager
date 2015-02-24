@@ -4,6 +4,7 @@ import types
 from tempfile import NamedTemporaryFile
 import pexpect
 import datetime
+import subprocess
 
 from ConfigParser import SafeConfigParser
 from SambaManager import settings
@@ -26,9 +27,9 @@ def run_as_root(command):
     print 'su root -c "{0}"'.format(command)
     process = pexpect.spawn('su root -c "{0}"'.format(command))
     process.logfile = open('/tmp/log_', 'wa')
-    
-    process.expect('Password: ')
-    process.sendline(settings.ROOT_PASSWORD)
+    if subprocess.check_output('whoami').strip() != 'root':
+        process.expect('Password: ')
+        process.sendline(settings.ROOT_PASSWORD)
 
     return process
 
@@ -129,8 +130,9 @@ def del_user(username):
 def add_group(group_name):
     groups = ManageableGroup.objects.filter(name=group_name)
     if len(groups) == 0:
-        process = run_as_root('addgroup "{0}"'.format(group_name))
-        process.expect(pexpect.EOF)
+        if subprocess.call(['grep', '^{}:'.format(group_name), '/etc/group']):
+            process = run_as_root('addgroup "{0}"'.format(group_name))
+            process.expect(pexpect.EOF)
         
         ManageableGroup.objects.create(name=group_name)
         
